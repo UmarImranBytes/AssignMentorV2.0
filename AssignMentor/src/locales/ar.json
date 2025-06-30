@@ -1,0 +1,19 @@
+{
+  "settings": "الإعدادات",
+  "dark_mode": "الوضع الداكن",
+  "email_notifications": "إشعارات البريد الإلكتروني",
+  "language": "اللغة",
+  "theme": "السمة",
+  "light": "فاتح",
+  "dark": "داكن",
+  "enabled": "مفعل",
+  "disabled": "معطل",
+  "change_password": "تغيير كلمة المرور",
+  "current_password": "كلمة المرور الحالية",
+  "new_password": "كلمة المرور الجديدة",
+  "confirm_password": "تأكيد كلمة المرور",
+  "update_password": "تحديث كلمة المرور",
+  "password_mismatch": "كلمتا المرور غير متطابقتين",
+  "password_success": "تم تحديث كلمة المرور بنجاح!",
+  "support": "للمساعدة اتصل بـ"
+}

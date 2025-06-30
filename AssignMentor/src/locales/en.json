@@ -1,0 +1,19 @@
+{
+  "settings": "Settings",
+  "dark_mode": "Dark Mode",
+  "email_notifications": "Email Notifications",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "enabled": "Enabled",
+  "disabled": "Disabled",
+  "change_password": "Change Password",
+  "current_password": "Current Password",
+  "new_password": "New Password",
+  "confirm_password": "Confirm New Password",
+  "update_password": "Update Password",
+  "password_mismatch": "New passwords do not match",
+  "password_success": "Password updated successfully!",
+  "support": "For help contact"
+}

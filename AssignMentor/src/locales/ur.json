@@ -1,0 +1,19 @@
+{
+  "settings": "ترتیبات",
+  "dark_mode": "ڈارک موڈ",
+  "email_notifications": "ای میل اطلاعات",
+  "language": "زبان",
+  "theme": "تھیم",
+  "light": "روشن",
+  "dark": "تاریک",
+  "enabled": "چالو",
+  "disabled": "غیرفعال",
+  "change_password": "پاسورڈ تبدیل کریں",
+  "current_password": "موجودہ پاسورڈ",
+  "new_password": "نیا پاسورڈ",
+  "confirm_password": "پاسورڈ کی تصدیق کریں",
+  "update_password": "پاسورڈ اپ ڈیٹ کریں",
+  "password_mismatch": "نئے پاسورڈ مماثل نہیں ہیں",
+  "password_success": "پاسورڈ کامیابی سے اپ ڈیٹ ہو گیا!",
+  "support": "مدد کے لیے رابطہ کریں"
+}
