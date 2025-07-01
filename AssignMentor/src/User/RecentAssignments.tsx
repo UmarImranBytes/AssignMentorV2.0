@@ -1,5 +1,3 @@
-import React from "react";
-
 const recent = [
   "Submitted AI Project Report",
   "Viewed Database Design",

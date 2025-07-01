@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 
-export default function Complaints() {
+export default function TutorComplaint() {
   const [complaint, setComplaint] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // TODO: send tutor complaint to backend
+
     setTimeout(() => {
       setSubmitted(false);
       setComplaint("");
-    }, 3000); // Reset after 3 seconds
+    }, 3000);
   };
 
   return (
     <div className="p-6 max-w-2xl mx-auto min-h-screen flex items-center justify-center">
-      <div className="w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-2xl p-8 transform transition-all duration-300 hover:shadow-xl">
-        <h1 className="text-3xl font-bold dark:text-white mb-6 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text">
-          Submit a Complaint
+      <div className="w-full bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-2xl p-8 transition duration-300 hover:shadow-xl">
+        <h1 className="text-3xl font-bold mb-6 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">
+          Tutor Complaint Form
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router"; // Corrected import
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -38,7 +38,7 @@ function Login({ onLogin }: LoginProps) {
     localStorage.setItem("userRole", role);
 
     onLogin(role);
-    navigate(`/dashboard/student`);
+    navigate(`/dashboard/${role}`);
   };
 
   return (
@@ -164,13 +164,21 @@ function Login({ onLogin }: LoginProps) {
           <p className="text-sm text-center mt-4 text-gray-500 flex justify-center gap-4">
             <span>
               Don't have an account?
-              <Link to="/signin" className="text-orange-500 ml-1 hover:underline">
+              <Link
+                to="/signin"
+                className="text-orange-500 ml-1 hover:underline"
+                onClick={() => console.log("Navigating to /signin")}
+              >
                 Sign Up
               </Link>
             </span>
             <span>|</span>
             <span>
-              <Link to="/forgot-password" className="text-orange-500 hover:underline">
+              <Link
+                to="/forgot-password"
+                className="text-orange-500 hover:underline"
+                onClick={() => console.log("Navigating to /forgot-password")}
+              >
                 Forgot Password?
               </Link>
             </span>

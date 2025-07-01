@@ -1,3 +1,4 @@
+// App.tsx
 import { useState, useEffect } from "react";
 import {
   Routes,
@@ -38,12 +39,20 @@ import TutorComplaint from "./Tutor/Complaints";
 import TutorProfile from "./Tutor/Profile";
 import TutorSettings from "./Tutor/Settings";
 
+// Admin Pages
+import AdminDashboard from "./Admin/DashboardAdmin";
+import ManageUsers from "./Admin/ManageUsers";
+import AdminProfile from "./Admin/Profile";
+import AdminSettings from "./Admin/Settings";
+import ViewAssignmentsAdmin from "./Admin/ViewAssignments";
+import AdminComplaints from "./Admin/Complaints";
+
+
 // Components
 import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
 import { Menu, X } from "lucide-react";
 
-// Custom hook for mobile detection
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -68,7 +77,6 @@ function DashboardLayout({ role }: { role: "student" | "admin" | "tutor" }) {
   const isMobile = useIsMobile();
   const location = useLocation();
 
-  // Auto-close sidebar on mobile when navigating
   useEffect(() => {
     if (isMobile) {
       setSidebarOpen(false);
@@ -87,7 +95,6 @@ function DashboardLayout({ role }: { role: "student" | "admin" | "tutor" }) {
 
   return (
     <>
-      {/* Mobile menu button */}
       {isMobile && (
         <button
           className="fixed z-30 p-2 md:hidden top-4 left-4"
@@ -116,13 +123,15 @@ function DashboardLayout({ role }: { role: "student" | "admin" | "tutor" }) {
           onToggleCollapse={toggleSidebar}
           isMobile={isMobile}
         />
-        <main
-          className={`flex-1 overflow-y-auto p-4 transition-all duration-300 ${
-            sidebarCollapsed ? "ml-0 md:ml-16" : "ml-0 md:ml-64"
-          }`}
-        >
-          <Outlet />
-        </main>
+          <main
+        className={`flex-2 overflow-y-auto transition-all duration-300 ${
+          sidebarCollapsed ? "ml-0 md:ml-16" : "ml-0 md:ml-64"
+        }`}
+        style={{ paddingTop: "1.5rem" }} 
+      >
+        <Outlet />
+      </main>
+
       </div>
     </>
   );
@@ -177,7 +186,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<AnimatedRoutes onLogin={handleLogin} />} />
+        <Route path="/*" element={<AnimatedRoutes onLogin={handleLogin} />} />
         {userRole && (
           <Route path="/dashboard" element={<DashboardLayout role={userRole} />}>
             {/* Student Routes */}
@@ -185,18 +194,9 @@ export default function App() {
               <>
                 <Route index element={<DashboardUser />} />
                 <Route path="student" element={<DashboardUser />} />
-                <Route
-                  path="student/postassignments"
-                  element={<PostAssignments />}
-                />
-                <Route
-                  path="student/viewassignments"
-                  element={<ViewAssignments />}
-                />
-                <Route
-                  path="student/recentassignments"
-                  element={<RecentAssignments />}
-                />
+                <Route path="student/postassignments" element={<PostAssignments />} />
+                <Route path="student/viewassignments" element={<ViewAssignments />} />
+                <Route path="student/recentassignments" element={<RecentAssignments />} />
                 <Route path="student/profile" element={<Profile />} />
                 <Route path="student/settings" element={<Settings />} />
                 <Route path="student/complaint" element={<Complaint />} />
@@ -209,20 +209,26 @@ export default function App() {
               <>
                 <Route index element={<TutorDashboard />} />
                 <Route path="tutor" element={<TutorDashboard />} />
-                <Route
-                  path="tutor/submitassignment"
-                  element={<SubmitAssignment />}
-                />
-                <Route
-                  path="tutor/viewassignments"
-                  element={<TutorViewAssignments />}
-                />
+                <Route path="tutor/submitassignment" element={<SubmitAssignment />} />
+                <Route path="tutor/viewassignments" element={<TutorViewAssignments />} />
                 <Route path="tutor/calendar" element={<TutorCalendar />} />
                 <Route path="tutor/complaint" element={<TutorComplaint />} />
                 <Route path="tutor/profile" element={<TutorProfile />} />
                 <Route path="tutor/settings" element={<TutorSettings />} />
               </>
             )}
+
+            {userRole === "admin" && (
+          <>
+          <Route index element={<AdminDashboard />} />
+          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin/users" element={<ManageUsers />} />
+          <Route path="admin/profile" element={<AdminProfile />} />
+          <Route path="admin/settings" element={<AdminSettings />} />
+          <Route path="admin/viewassignments" element={<ViewAssignmentsAdmin />} />
+          <Route path="admin/complaints" element={<AdminComplaints />} />
+           </>
+)}
 
             <Route
               path="*"
