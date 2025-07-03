@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword: React.FC = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -11,7 +13,7 @@ const ForgotPassword: React.FC = () => {
     e.preventDefault();
 
     if (!email.trim()) {
-      setMessage("Please enter your email address.");
+      setMessage(t("auth.enterEmail"));
       setStatus("error");
       return;
     }
@@ -19,15 +21,12 @@ const ForgotPassword: React.FC = () => {
     setStatus("loading");
     setTimeout(() => {
       setStatus("success");
-      setMessage("If this email exists, a reset link has been sent.");
+      setMessage(t("auth.resetSent"));
     }, 1500);
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4"
-      style={{ backgroundImage: "url('/Icons/9161244.png')" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative px-4" style={{ backgroundImage: "url('/Icons/9161244.png')" }}>
       <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30 z-0" />
 
       <motion.div
@@ -36,28 +35,18 @@ const ForgotPassword: React.FC = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10 bg-white bg-opacity-90 rounded-2xl shadow-xl p-10 max-w-md w-full"
       >
-        <motion.h1
-          className="text-3xl font-bold text-orange-600 mb-4 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          Forgot Password
+        <motion.h1 className="text-3xl font-bold text-orange-600 mb-4 text-center" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
+          {t("auth.forgotPassword")}
         </motion.h1>
 
-        <motion.p
-          className="text-sm text-gray-700 mb-6 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          Enter your email address to receive a password reset link.
+        <motion.p className="text-sm text-gray-700 mb-6 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+          {t("auth.enterEmailForReset")}
         </motion.p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email Address
+              {t("auth.emailAddress")}
             </label>
             <input
               id="email"
@@ -77,15 +66,13 @@ const ForgotPassword: React.FC = () => {
             whileTap={{ scale: 0.97 }}
             className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-lg font-semibold transition"
           >
-            {status === "loading" ? "Sending..." : "Send Reset Link"}
+            {status === "loading" ? t("auth.sending") : t("auth.sendResetLink")}
           </motion.button>
         </form>
 
         {message && (
           <motion.p
-            className={`mt-4 text-sm text-center ${
-              status === "success" ? "text-green-600" : "text-red-600"
-            }`}
+            className={`mt-4 text-sm text-center ${status === "success" ? "text-green-600" : "text-red-600"}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -94,16 +81,11 @@ const ForgotPassword: React.FC = () => {
           </motion.p>
         )}
 
-        <motion.div
-          className="mt-6 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
+        <motion.div className="mt-6 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
           <p className="text-sm text-gray-600">
-            Remembered your password?{" "}
+            {t("auth.rememberedPassword")}{" "}
             <Link to="/" className="text-orange-600 font-semibold hover:underline">
-              Go back to Login
+              {t("auth.backToLogin")}
             </Link>
           </p>
         </motion.div>

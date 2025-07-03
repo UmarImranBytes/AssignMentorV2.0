@@ -10,11 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LANGUAGES = [
   { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "ur", label: "اردو", flag: "🇵🇰", rtl: true },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "ar", label: "العربية", flag: "🇸🇦", rtl: true },
-  { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "ur", label: "اردو", flag: "🇵🇰", rtl: true }
 ];
+
 
 export default function Settings() {
   const { t, i18n } = useTranslation();
@@ -22,7 +20,7 @@ export default function Settings() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") === "dark");
   const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
   const [emailNotifications, setEmailNotifications] = useState(
-    localStorage.getItem("emailNotifications") === "false" ? false : true
+    localStorage.getItem("emailNotifications") !== "false"
   );
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -64,27 +62,28 @@ export default function Settings() {
   };
 
   return (
-    <div className="p-10 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-orange-600 mb-6">{t("settings")}</h1>
+    <div className="p-10 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all">
+      <h1 className="text-3xl font-bold text-orange-600 mb-6 text-center">{t("settings.title")}</h1>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {/* Dark Mode */}
         <div className="flex items-center justify-between">
           <label className="flex items-center text-gray-700 dark:text-gray-300">
             <FaMoon className="mr-2" />
             {t("dark_mode")}
           </label>
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={() => {
-              setDarkMode(!darkMode);
-              toast.success(
-                `${t("theme")}: ${!darkMode ? t("dark") : t("light")}`
-              );
-            }}
-            className="w-5 h-5"
-          />
+          <label className="inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              checked={darkMode}
+              onChange={() => {
+                setDarkMode(!darkMode);
+                toast.success(`${t("theme")}: ${!darkMode ? t("dark") : t("light")}`);
+              }}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none dark:bg-gray-700 rounded-full peer peer-checked:bg-orange-500 transition-all"></div>
+          </label>
         </div>
 
         {/* Email Notifications */}
@@ -99,9 +98,7 @@ export default function Settings() {
             onChange={() => {
               setEmailNotifications(!emailNotifications);
               toast.info(
-                `${t("email_notifications")}: ${
-                  !emailNotifications ? t("enabled") : t("disabled")
-                }`
+                `${t("email_notifications")}: ${!emailNotifications ? t("enabled") : t("disabled")}`
               );
             }}
             className="w-5 h-5"
@@ -111,8 +108,7 @@ export default function Settings() {
         {/* Language Picker */}
         <div>
           <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-            <span className="mr-2">🌐</span>
-            {t("language")}
+            🌐 {t("language")}
           </label>
           <select
             value={language}
@@ -132,11 +128,12 @@ export default function Settings() {
         </div>
 
         {/* Password Change */}
-        <form onSubmit={handlePasswordSubmit} className="mt-4 space-y-3">
+        <form onSubmit={handlePasswordSubmit} className="space-y-3">
           <div className="text-gray-700 dark:text-gray-300 font-medium flex items-center">
             <FaLock className="mr-2" />
             {t("change_password")}
           </div>
+
           <input
             type="password"
             placeholder={t("current_password")}
@@ -144,6 +141,7 @@ export default function Settings() {
             onChange={(e) => setCurrentPassword(e.target.value)}
             className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
           />
+
           <input
             type="password"
             placeholder={t("new_password")}
@@ -151,6 +149,7 @@ export default function Settings() {
             onChange={(e) => setNewPassword(e.target.value)}
             className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
           />
+
           <input
             type="password"
             placeholder={t("confirm_password")}
@@ -158,6 +157,7 @@ export default function Settings() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
           />
+
           <button
             type="submit"
             className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded transition"
@@ -165,7 +165,6 @@ export default function Settings() {
             {t("update_password")}
           </button>
         </form>
-
       </div>
     </div>
   );

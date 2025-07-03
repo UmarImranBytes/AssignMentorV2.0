@@ -1,21 +1,38 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Profile() {
+  const userId = localStorage.getItem("userId"); // Make sure this exists
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [profile, setProfile] = useState({
-    name: "Bheek Manga",
-    email: "bheek@example.com",
-    phone: "123-456-7890",
-    role: "student",
-    enrollmentDate: "June 15, 2025",
-    bio: "Aspiring learner passionate about assignments and growth.",
-    profilePic: "/default-profile.png",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    role: "",
+    createdAt: "",
+    bio: "",
+    profilePic: "",
   });
 
-  const [preview, setPreview] = useState(profile.profilePic);
+  const [preview, setPreview] = useState("/default-profile.png");
   const [isEditing, setIsEditing] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Fetch profile on mount
+  useEffect(() => {
+    if (!userId) return;
+    axios.get(`http://localhost:5000/api/profile/${userId}`)
+      .then(res => {
+        setProfile(res.data);
+        if (res.data.profilePic) setPreview(res.data.profilePic);
+      })
+      .catch(() => {
+        toast.error("Failed to load profile", { theme: "colored" });
+      });
+  }, [userId]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,16 +46,20 @@ export default function Profile() {
       reader.onloadend = () => {
         setPreview(reader.result as string);
         setProfile((prev) => ({ ...prev, profilePic: reader.result as string }));
-        toast.success("Profile picture updated!", { theme: "colored" });
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsEditing(false);
-    toast.success("Profile saved successfully!", { theme: "colored" });
+    try {
+      await axios.put(`http://localhost:5000/api/profile/${userId}`, profile);
+      toast.success("Profile updated successfully!", { theme: "colored" });
+      setIsEditing(false);
+    } catch (err) {
+      toast.error("Update failed", { theme: "colored" });
+    }
   };
 
   const handleCancel = () => {
@@ -76,23 +97,51 @@ export default function Profile() {
 
           {/* Profile Form */}
           <form onSubmit={handleSave} className="w-full flex-1 space-y-5">
-            {[
-              { label: "Name", name: "name", type: "text" },
-              { label: "Email", name: "email", type: "email" },
-              { label: "Phone", name: "phone", type: "text" },
-            ].map(({ label, name, type }) => (
-              <div key={name}>
-                <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">{label}</label>
-                <input
-                  type={type}
-                  name={name}
-                  value={profile[name as keyof typeof profile] as string}
-                  onChange={handleInputChange}
-                  readOnly={!isEditing}
-                  className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border focus:ring-2 focus:ring-orange-500 transition duration-200"
-                />
-              </div>
-            ))}
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                value={profile.firstName}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
+                className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border focus:ring-2 focus:ring-orange-500 transition duration-200"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                value={profile.lastName}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
+                className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">Email</label>
+              <input
+                type="email"
+                value={profile.email}
+                readOnly
+                className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">Phone</label>
+              <input
+                type="text"
+                name="phone"
+                value={profile.phone}
+                onChange={handleInputChange}
+                readOnly={!isEditing}
+                className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border"
+              />
+            </div>
 
             <div>
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">Role</label>
@@ -108,7 +157,7 @@ export default function Profile() {
               <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">Enrollment Date</label>
               <input
                 type="text"
-                value={profile.enrollmentDate}
+                value={new Date(profile.createdAt).toLocaleDateString()}
                 readOnly
                 className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white border"
               />
@@ -126,7 +175,7 @@ export default function Profile() {
               />
             </div>
 
-            {/* Action Buttons */}
+            {/* Buttons */}
             <div className="flex gap-4 flex-col sm:flex-row">
               {!isEditing ? (
                 <button

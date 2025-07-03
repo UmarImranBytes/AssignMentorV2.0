@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Signin = () => {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       className="min-h-screen flex items-center justify-center relative bg-cover bg-center"
@@ -11,7 +14,6 @@ const Signin = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30 z-0" />
 
       <motion.div
@@ -20,7 +22,6 @@ const Signin = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
       >
-        {/* Illustration */}
         <motion.div
           className="hidden md:block flex-1"
           initial={{ x: -50, opacity: 0 }}
@@ -34,13 +35,10 @@ const Signin = () => {
           />
         </motion.div>
 
-        {/* Sign In Box */}
         <div className="flex-1 w-full text-center">
-          <h2 className="text-3xl font-medium text-gray-700">Ready to</h2>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join Us?</h1>
-          <p className="text-gray-600 mb-6 text-sm">
-            Please select your sign-up type to continue
-          </p>
+          <h2 className="text-3xl font-medium text-gray-700">{t("auth.signin.ready")}</h2>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("auth.signin.joinUs")}</h1>
+          <p className="text-gray-600 mb-6 text-sm">{t("auth.signin.selectType")}</p>
 
           <div className="flex flex-col gap-4 w-full">
             <motion.div
@@ -52,7 +50,7 @@ const Signin = () => {
                 to="/signup/student"
                 className="px-6 py-3 bg-orange-500 text-white rounded-full font-semibold text-lg hover:bg-orange-600 hover:scale-105 transition duration-300 block"
               >
-                Sign up as Student
+                {t("auth.signin.signupStudent")}
               </Link>
             </motion.div>
 
@@ -65,7 +63,7 @@ const Signin = () => {
                 to="/signup/tutor"
                 className="px-6 py-3 bg-orange-500 text-white rounded-full font-semibold text-lg hover:bg-orange-600 hover:scale-105 transition duration-300 shadow block"
               >
-                Sign up as Tutor
+                {t("auth.signin.signupTutor")}
               </Link>
             </motion.div>
           </div>
@@ -76,9 +74,9 @@ const Signin = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1 }}
           >
-            Already have an account?
+            {t("auth.signin.haveAccount")}
             <Link to="/" className="text-orange-500 ml-1 hover:underline">
-              Log In
+              {t("auth.signin.login")}
             </Link>
           </motion.p>
         </div>

@@ -1,19 +1,288 @@
 {
-  "settings": "Settings",
-  "dark_mode": "Dark Mode",
-  "email_notifications": "Email Notifications",
-  "language": "Language",
-  "theme": "Theme",
-  "light": "Light",
-  "dark": "Dark",
-  "enabled": "Enabled",
-  "disabled": "Disabled",
-  "change_password": "Change Password",
-  "current_password": "Current Password",
-  "new_password": "New Password",
-  "confirm_password": "Confirm New Password",
-  "update_password": "Update Password",
-  "password_mismatch": "New passwords do not match",
-  "password_success": "Password updated successfully!",
-  "support": "For help contact"
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "delete": "Delete",
+    "download": "Download",
+    "edit": "Edit",
+    "update": "Update"
+  },
+  "profile": {
+    "title": "Profile",
+    "default": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1234567890",
+      "enrollmentDate": "2023-01-15",
+      "bio": "Tell us about yourself..."
+    },
+    "roles": {
+      "student": "Student",
+      "tutor": "Tutor"
+    },
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "role": "Role",
+      "enrollmentDate": "Enrollment Date",
+      "bio": "Biography"
+    },
+    "buttons": {
+      "edit": "Edit Profile",
+      "save": "Save Changes",
+      "cancel": "Cancel",
+      "changePic": "Change profile picture"
+    },
+    "messages": {
+      "picUpdated": "Profile picture updated successfully!",
+      "saveSuccess": "Profile updated successfully!",
+      "changesCancelled": "Changes discarded"
+    },
+    "alt": {
+      "profilePic": "Profile picture"
+    }
+  },
+  "submitAssignment": {
+    "title": "Submit Assignment",
+    "fileInputLabel": "Click to upload or drag and drop",
+    "fileInputAriaLabel": "Select assignment file to upload",
+    "submitButton": "Submit Assignment",
+    "uploading": "Uploading...",
+    "uploadProgress": "Upload progress: {progress}%",
+    "fileSelected": "File selected: {fileName}",
+    "submissionSuccess": "Assignment submitted successfully: {fileName}",
+    "errors": {
+      "fileTooLarge": "File size exceeds 10MB limit",
+      "noFileSelected": "Please select a file to upload",
+      "submissionFailed": "Submission failed, please try again"
+    }
+  },
+  "assignments": {
+    "title": "My Assignments",
+    "columns": {
+      "title": "Title",
+      "status": "Status",
+      "dueDate": "Due Date",
+      "actions": "Actions"
+    },
+    "status": {
+      "submitted": "Submitted",
+      "pending": "Pending",
+      "late": "Late"
+    },
+    "aiResearch": "AI Research Paper",
+    "databaseSchema": "Database Schema Design",
+    "reactComponent": "React Component Library",
+    "download": "Download",
+    "delete": "Delete",
+    "downloading": "Downloading {filename}...",
+    "downloadSuccess": "Downloaded {filename} successfully!",
+    "deleteSuccess": "Assignment deleted successfully",
+    "emptyState": "No assignments found"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome",
+    "roles": {
+      "tutor": "Tutor"
+    },
+    "stats": {
+      "totalAssignments": "Total Assignments",
+      "pendingReviews": "Pending Reviews",
+      "reviewed": "Reviewed"
+    },
+    "statusValues": {
+      "reviewed": "Reviewed",
+      "pending": "Pending"
+    },
+    "subjects": {
+      "database": "Database Systems",
+      "os": "Operating Systems",
+      "webDev": "Web Development",
+      "ai": "Artificial Intelligence"
+    },
+    "students": {
+      "ali": "Ali Khan",
+      "fatima": "Fatima Ahmed"
+    },
+    "messages": {
+      "reminder": "Reminder: Grade submissions by Friday",
+      "rubric": "New rubric available for AI assignments"
+    },
+    "chartTitle": "Assignment Review Status",
+    "upcomingTitle": "Upcoming Deadlines",
+    "submissionsTitle": "Recent Submissions",
+    "messagesTitle": "Admin Messages"
+  },
+  "settings": {
+    "title": "Settings",
+    "dark_mode": "Dark Mode",
+    "email_notifications": "Email Notifications",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "update_password": "Update Password",
+    "password_mismatch": "Passwords do not match",
+    "password_success": "Password updated successfully!",
+    "support": "For help contact"
+  },
+  "complaints": {
+    "adminPanel": "Admin Complaints Panel",
+    "noComplaints": "No complaints found",
+    "markResolved": "Mark Resolved",
+    "resolveSuccess": "Complaint resolved!",
+    "resolveError": "Failed to resolve complaint",
+    "statusLabel": {
+      "pending": "Pending",
+      "resolved": "Resolved"
+    },
+    "dummyMessage1": "Issue with assignment submission portal.",
+    "dummyMessage2": "Cannot access the recent assignments tab."
+  },
+  "users": {
+    "manageUsers": "Manage Users",
+    "filter": {
+      "allRoles": "All Roles",
+      "students": "Students",
+      "tutors": "Tutors",
+      "admins": "Admins"
+    },
+    "searchPlaceholder": "Search by name or email",
+    "table": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "role": "Role",
+      "actions": "Actions"
+    },
+    "roles": {
+      "student": "Student",
+      "tutor": "Tutor",
+      "admin": "Admin"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "makeAdmin": "Make Admin",
+      "revokeAdmin": "Revoke Admin"
+    },
+    "editUser": "Edit User",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email"
+    },
+    "updateSuccess": "User updated!",
+    "deleteSuccess": "User deleted!",
+    "roleToggle": "Role toggled!"
+  },
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next",
+    "pageInfo": "Page {current} of {total}"
+  },
+  "auth": {
+    "forgotPassword": "Forgot Password",
+    "enterEmailForReset": "Enter your email address to receive a password reset link.",
+    "emailAddress": "Email Address",
+    "sendResetLink": "Send Reset Link",
+    "sending": "Sending...",
+    "resetSent": "If this email exists, a reset link has been sent.",
+    "enterEmail": "Please enter your email address.",
+    "rememberedPassword": "Remembered your password?",
+    "backToLogin": "Go back to Login",
+    "login": {
+      "title": "Let's",
+      "subtitle": "Start Learning",
+      "description": "Please login or sign up to continue",
+      "yourEmail": "Your Email",
+      "yourPassword": "Your Password",
+      "rememberMe": "Remember Me",
+      "loginButton": "Login",
+      "googleLogin": "Continue with Google",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign Up",
+      "forgotPassword": "Forgot Password?"
+    },
+    "signin": {
+      "ready": "Ready to",
+      "joinUs": "Join Us?",
+      "selectType": "Please select your sign-up type to continue",
+      "signupStudent": "Sign up as Student",
+      "signupTutor": "Sign up as Tutor",
+      "haveAccount": "Already have an account?",
+      "login": "Log In"
+    },
+    "signup": {
+      "fillAllFields": "Please fill in all fields.",
+      "passwordRequirements": "Password must be at least 6 characters and include uppercase, lowercase, number, and special character.",
+      "success": "Signup successful! Redirecting...",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Your Email",
+      "password": "Your Password",
+      "signupButton": "Sign Up",
+      "haveAccount": "Already have an account?",
+      "login": "Login",
+      "student": {
+        "title": "Let's",
+        "subtitle": "Start Learning",
+        "description": "Please sign up to continue"
+      },
+      "tutor": {
+        "title": "Tutor Sign Up",
+        "experience": "Experience (e.g. 5 years)",
+        "uploadCV": "Upload Your CV",
+        "changeCV": "Change CV (.doc, .docx, .pdf)",
+        "invalidFileType": "Invalid file type. Please upload .pdf, .doc, or .docx.",
+        "fileTooLarge": "File too large. Maximum size is 5MB.",
+        "fillAllFields": "Please fill in all fields and upload your CV.",
+        "success": "Signed up successfully as Tutor!",
+        "remove": "Remove"
+      }
+    },
+    "roles": {
+      "student": "Student",
+      "admin": "Admin",
+      "tutor": "Tutor"
+    }
+  },
+  "assignments": {
+    "title": "My Assignments",
+    "columns": {
+      "title": "Title",
+      "status": "Status",
+      "dueDate": "Due Date",
+      "actions": "Actions"
+    },
+    "status": {
+      "submitted": "Submitted",
+      "pending": "Pending",
+      "late": "Late"
+    },
+    "assignmentTitles": {
+      "aiResearch": "AI Research Paper",
+      "databaseSchema": "Database Schema Design",
+      "reactComponent": "React Component Library"
+    },
+    "actions": {
+      "download": "Download",
+      "delete": "Delete"
+    },
+    "messages": {
+      "downloading": "Downloading {filename}...",
+      "downloadSuccess": "Downloaded {filename} successfully!",
+      "deleteSuccess": "Assignment deleted successfully",
+      "emptyState": "No assignments found"
+    }
+  }
 }

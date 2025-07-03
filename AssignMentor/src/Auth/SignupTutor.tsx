@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 
 interface TutorSignupProps {
@@ -9,9 +10,9 @@ interface TutorSignupProps {
 }
 
 const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Form States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -19,7 +20,6 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
   const [experience, setExperience] = useState("");
   const [cvFile, setCvFile] = useState<File | null>(null);
 
-  // Handle CV Upload with validation
   const handleCvUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -30,12 +30,12 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
       ];
 
       if (!allowedTypes.includes(file.type)) {
-        toast.error("Invalid file type. Please upload .pdf, .doc, or .docx.");
+        toast.error(t("auth.signup.tutor.invalidFileType"));
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        toast.error("File too large. Maximum size is 5MB.");
+        toast.error(t("auth.signup.tutor.fileTooLarge"));
         return;
       }
 
@@ -51,29 +51,25 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
     e.preventDefault();
 
     if (!email || !password || !firstName || !lastName || !experience || !cvFile) {
-      toast.error("Please fill in all fields and upload your CV.");
+      toast.error(t("auth.signup.tutor.fillAllFields"));
       return;
     }
 
-    // Password strength check
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
     if (!passwordRegex.test(password)) {
-      toast.error(
-        "Password must be at least 6 characters and include uppercase, lowercase, number, and special character."
-      );
+      toast.error(t("auth.signup.passwordRequirements"));
       return;
     }
 
-    // Prepare form data for backend (future integration)
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
     formData.append("experience", experience);
-    formData.append("cv", cvFile);
+    if (cvFile) formData.append("cv", cvFile);
 
-    toast.success("Signed up successfully as Tutor!", {
+    toast.success(t("auth.signup.tutor.success"), {
       position: "top-center",
       autoClose: 2500,
       theme: "colored",
@@ -87,10 +83,7 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
-      style={{ backgroundImage: "url('/Icons/9161244.png')" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center relative" style={{ backgroundImage: "url('/Icons/9161244.png')" }}>
       <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/20 to-white/30 z-0" />
       <ToastContainer />
 
@@ -100,21 +93,15 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Left Image */}
         <motion.div
           className="hidden md:block md:w-1/2 p-6 bg-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <img
-            src="/Icons/teacher.jpg"
-            alt="Tutor Illustration"
-            className="w-full h-full object-contain"
-          />
+          <img src="/Icons/teacher.jpg" alt="Tutor Illustration" className="w-full h-full object-contain" />
         </motion.div>
 
-        {/* Form Section */}
         <motion.div
           className="w-full md:w-1/2 p-8 sm:p-10"
           initial={{ opacity: 0, x: 40 }}
@@ -122,13 +109,13 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
           transition={{ delay: 0.3, duration: 0.7 }}
         >
           <h1 className="text-3xl font-bold text-orange-600 text-center mb-6">
-            Tutor Sign Up
+            {t("auth.signup.tutor.title")}
           </h1>
 
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <input
               type="email"
-              placeholder="Email"
+              placeholder={t("auth.signup.email")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -136,7 +123,7 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t("auth.signup.password")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -145,7 +132,7 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder={t("auth.signup.firstName")}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -153,7 +140,7 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
               />
               <input
                 type="text"
-                placeholder="Last Name"
+                placeholder={t("auth.signup.lastName")}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 className="p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
@@ -162,17 +149,16 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
             </div>
             <input
               type="text"
-              placeholder="Experience (e.g. 5 years)"
+              placeholder={t("auth.signup.tutor.experience")}
               value={experience}
               onChange={(e) => setExperience(e.target.value)}
               className="p-3 border border-orange-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
               required
             />
 
-            {/* CV Upload */}
             <label className="flex flex-col items-center justify-center p-4 border-2 border-dashed border-orange-500 rounded-lg cursor-pointer hover:bg-orange-50 transition">
               <span className="text-orange-600 font-semibold">
-                {cvFile ? "Change CV (.doc, .docx, .pdf)" : "Upload Your CV"}
+                {cvFile ? t("auth.signup.tutor.changeCV") : t("auth.signup.tutor.uploadCV")}
               </span>
               <input
                 type="file"
@@ -192,7 +178,7 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
                   onClick={removeCvFile}
                   className="text-red-600 font-semibold hover:underline"
                 >
-                  Remove
+                  {t("auth.signup.tutor.remove")}
                 </button>
               </div>
             )}
@@ -203,14 +189,14 @@ const TutorSignup: React.FC<TutorSignupProps> = ({ onLogin }) => {
               whileTap={{ scale: 0.97 }}
               className="mt-4 p-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition"
             >
-              Sign Up as Tutor
+              {t("auth.signup.tutor.signupButton")}
             </motion.button>
           </form>
 
           <p className="text-center text-gray-600 text-sm mt-4">
-            Already have an account?
+            {t("auth.signup.haveAccount")}
             <Link to="/" className="text-orange-500 ml-1 font-medium hover:underline">
-              Login
+              {t("auth.signup.login")}
             </Link>
           </p>
         </motion.div>

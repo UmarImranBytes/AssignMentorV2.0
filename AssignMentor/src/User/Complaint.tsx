@@ -3,16 +3,43 @@ import React, { useState } from "react";
 export default function StudentComplaint() {
   const [complaint, setComplaint] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // TODO: send student complaint to backend
+    setError("");
 
-    setTimeout(() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      setError("❌ User not logged in.");
       setSubmitted(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/complaints", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId,
+          text: complaint, // ✅ corrected key
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to submit complaint.");
+      }
+
       setComplaint("");
-    }, 3000);
+    } catch (err: any) {
+      setError(`❗ ${err.message}`);
+    } finally {
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -39,10 +66,13 @@ export default function StudentComplaint() {
           >
             {submitted ? "Submitting..." : "Submit Complaint"}
           </button>
-          {submitted && (
+          {submitted && !error && (
             <p className="text-green-600 dark:text-green-400 text-center animate-pulse">
               Complaint submitted successfully!
             </p>
+          )}
+          {error && (
+            <p className="text-red-600 dark:text-red-400 text-center">{error}</p>
           )}
         </form>
       </div>

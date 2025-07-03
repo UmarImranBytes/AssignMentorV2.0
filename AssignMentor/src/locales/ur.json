@@ -15,5 +15,367 @@
   "update_password": "پاسورڈ اپ ڈیٹ کریں",
   "password_mismatch": "نئے پاسورڈ مماثل نہیں ہیں",
   "password_success": "پاسورڈ کامیابی سے اپ ڈیٹ ہو گیا!",
-  "support": "مدد کے لیے رابطہ کریں"
+  "support": "مدد کے لیے رابطہ کریں",
+  
+  "common": {
+    "cancel": "منسوخ کریں",
+    "save": "محفوظ کریں"
+  },
+  
+  "complaints": {
+    "adminPanel": "شکایات کا انتظام",
+    "noComplaints": "کوئی شکایت نہیں ملی",
+    "markResolved": "حل شدہ کے طور پر نشان زد کریں",
+    "resolveSuccess": "شکایت حل ہو گئی!",
+    "resolveError": "شکایت حل کرنے میں ناکامی",
+    "status": {
+      "pending": "زیر التواء",
+      "resolved": "حل شدہ"
+    },
+    "dummyMessage1": "اسائنمنٹ جمع کرانے کے پورٹل میں مسئلہ۔",
+    "dummyMessage2": "حالیہ اسائنمنٹس کے ٹیب تک رسائی نہیں ہو سکتی۔"
+  },
+  
+  "dashboard": {
+    "title": "ایڈمن ڈیش بورڈ",
+    "welcome": "خوش آمدید",
+    "roles": {
+      "tutor": "ٹیوٹر"
+    },
+    "stats": {
+      "totalAssignments": "کل اسائنمنٹس",
+      "pendingReviews": "زیر التواء جائزے",
+      "reviewed": "جائزہ لیا گیا"
+    },
+    "statusLabel": {
+      "reviewed": "جائزہ لیا گیا",
+      "pending": "زیر التواء"
+    },
+    "subjects": {
+      "database": "ڈیٹا بیس سسٹمز",
+      "os": "آپریٹنگ سسٹمز",
+      "webDev": "ویب ڈویلپمنٹ",
+      "ai": "مصنوعی ذہانت"
+    },
+    "students": {
+      "ali": "علی خان",
+      "fatima": "فاطمہ احمد"
+    },
+    "messages": {
+      "reminder": "یاد دہانی: جمعہ تک سبمیشنز گریڈ کریں",
+      "rubric": "AI اسائنمنٹس کے لیے نیا ربرک دستیاب ہے"
+    },
+    "chartTitle": "اسائنمنٹ جائزہ کی حیثیت",
+    "upcomingTitle": "آنے والی آخری تاریخ",
+    "submissionsTitle": "حالیہ جمع کروائے گئے",
+    "messagesTitle": "ایڈمن کے پیغامات",
+    "users": {
+      "students": "طلباء",
+      "tutors": "ٹیوٹرز",
+      "complaints": "شکایات",
+      "assignments": "اسائنمنٹس"
+    },
+    "statusValues": {
+      "pending": "زیر التواء",
+      "inReview": "جائزے میں",
+      "completed": "مکمل"
+    },
+    "assignmentStatus": "اسائنمنٹ کی حیثیت کا جائزہ",
+    "systemOverview": "سسٹم کا جائزہ"
+  },
+  
+  "users": {
+    "manageUsers": "صارفین کا انتظام",
+    "filter": {
+      "allRoles": "تمام کردار",
+      "students": "طلباء",
+      "tutors": "ٹیوٹرز",
+      "admins": "ایڈمنز"
+    },
+    "searchPlaceholder": "نام یا ای میل سے تلاش کریں",
+    "table": {
+      "firstName": "پہلا نام",
+      "lastName": "آخری نام",
+      "email": "ای میل",
+      "role": "کردار",
+      "actions": "اعمال"
+    },
+    "roles": {
+      "student": "طالب علم",
+      "tutor": "ٹیوٹر",
+      "admin": "ایڈمن"
+    },
+    "actions": {
+      "edit": "ترمیم",
+      "delete": "حذف کریں",
+      "makeAdmin": "ایڈمن بنائیں",
+      "revokeAdmin": "ایڈمن ختم کریں"
+    },
+    "editUser": "صارف میں ترمیم کریں",
+    "form": {
+      "firstName": "پہلا نام",
+      "lastName": "آخری نام",
+      "email": "ای میل"
+    },
+    "updateSuccess": "صارف اپ ڈیٹ ہو گیا!",
+    "deleteSuccess": "صارف حذف ہو گیا!",
+    "roleToggle": "کردار تبدیل ہو گیا!"
+  },
+  
+  "profile": {
+    "title": "پروفائل میں ترمیم کریں",
+    "form": {
+      "fullName": "پورا نام",
+      "fullNamePlaceholder": "اپنا پورا نام درج کریں",
+      "email": "ای میل",
+      "emailPlaceholder": "اپنا ای میل درج کریں",
+      "password": "پاسورڈ",
+      "passwordPlaceholder": "نیا پاسورڈ درج کریں"
+    },
+    "saveChanges": "تبدیلیاں محفوظ کریں"
+  },
+  
+  "assignments": {
+    "myAssignments": "میری اسائنمنٹس",
+    "title": "عنوان",
+    "statusLabel": "حالت",
+    "statusValues": {
+      "submitted": "جمع کرایا گیا",
+      "pending": "زیر التواء"
+    },
+    "dummy": {
+      "aiReport": "AI ریسرچ رپورٹ",
+      "databaseSchema": "ڈیٹا بیس اسکیمہ"
+    },
+    "submitAssignment": {
+      "title": "اسائنمنٹ جمع کروائیں",
+      "fileInputLabel": "فائل منتخب کرنے کے لیے کلک کریں",
+      "fileInputAriaLabel": "اسائنمنٹ فائل منتخب کریں",
+      "submitButton": "اسائنمنٹ جمع کروائیں",
+      "uploading": "اپ لوڈ ہو رہا ہے...",
+      "uploadProgress": "اپ لوڈ کی پیشرفت: {{progress}}%",
+      "fileSelected": "{{fileName}} منتخب کی گئی",
+      "submissionSuccess": "{{fileName}} کامیابی سے جمع کر دی گئی!",
+      "errors": {
+        "noFileSelected": "براہ کرم پہلے ایک فائل منتخب کریں",
+        "fileTooLarge": "فائل کا سائز 10MB کی حد سے زیادہ ہے",
+        "submissionFailed": "جمع کرانے میں ناکامی۔ براہ کرم دوبارہ کوشش کریں۔"
+      }
+    },
+    "viewAssignments": {
+      "title": "میری اسائنمنٹس",
+      "emptyState": "کوئی اسائنمنٹ نہیں ملی",
+      "columns": {
+        "title": "عنوان",
+        "status": "حالت",
+        "dueDate": "آخری تاریخ",
+        "actions": "اعمال"
+      },
+      "status": {
+        "submitted": "جمع کرایا گیا",
+        "pending": "زیر التواء",
+        "late": "تاخیر سے"
+      },
+      "actions": {
+        "download": "ڈاؤن لوڈ",
+        "delete": "حذف کریں"
+      }
+    }
+  },
+  
+  "pagination": {
+    "prev": "پچھلا",
+    "next": "اگلا",
+    "pageInfo": "صفحہ {{current}} از {{total}}"
+  },
+  
+  "auth": {
+    "forgotPassword": "پاسورڈ بھول گئے",
+    "enterEmailForReset": "پاسورڈ ری سیٹ لنک حاصل کرنے کے لیے اپنا ای میل ایڈریس درج کریں۔",
+    "emailAddress": "ای میل ایڈریس",
+    "sendResetLink": "ری سیٹ لنک بھیجیں",
+    "sending": "بھیجا جا رہا ہے...",
+    "resetSent": "اگر یہ ای میل موجود ہے تو، ایک ری سیٹ لنک بھیج دیا گیا ہے۔",
+    "enterEmail": "براہ کرم اپنا ای میل ایڈریس درج کریں۔",
+    "rememberedPassword": "پاسورڈ یاد آگیا؟",
+    "backToLogin": "لاگ ان پر واپس جائیں",
+    
+    "login": {
+      "title": "آئیے",
+      "subtitle": "سیکھنا شروع کریں",
+      "description": "براہ کرم جاری رکھنے کے لیے لاگ ان یا سائن اپ کریں",
+      "yourEmail": "آپ کا ای میل",
+      "yourPassword": "آپ کا پاسورڈ",
+      "rememberMe": "مجھے یاد رکھیں",
+      "loginButton": "لاگ ان",
+      "googleLogin": "Google کے ساتھ جاری رکھیں",
+      "noAccount": "کوئی اکاؤنٹ نہیں ہے؟",
+      "signUp": "سائن اپ",
+      "forgotPassword": "پاسورڈ بھول گئے؟"
+    },
+    
+    "signin": {
+      "ready": "تیار ہیں",
+      "joinUs": "ہمارے ساتھ شامل ہونے کے لیے؟",
+      "selectType": "جاری رکھنے کے لیے اپنی سائن اپ کی قسم منتخب کریں",
+      "signupStudent": "طالب علم کے طور پر سائن اپ کریں",
+      "signupTutor": "ٹیوٹر کے طور پر سائن اپ کریں",
+      "haveAccount": "پہلے سے ہی اکاؤنٹ ہے؟",
+      "login": "لاگ ان"
+    },
+    
+    "signup": {
+      "fillAllFields": "براہ کرم تمام فیلڈز بھریں۔",
+      "passwordRequirements": "پاسورڈ میں کم از کم 6 حروف ہونے چاہئیں جن میں بڑے حروف، چھوٹے حروف، نمبرز اور خصوصی علامات شامل ہوں۔",
+      "success": "سائن اپ کامیاب! ری ڈائریکٹ ہو رہا ہے...",
+      "firstName": "پہلا نام",
+      "lastName": "آخری نام",
+      "email": "آپ کا ای میل",
+      "password": "آپ کا پاسورڈ",
+      "signupButton": "سائن اپ",
+      "haveAccount": "پہلے سے ہی اکاؤنٹ ہے؟",
+      "login": "لاگ ان",
+      
+      "student": {
+        "title": "آئیے",
+        "subtitle": "سیکھنا شروع کریں",
+        "description": "جاری رکھنے کے لیے سائن اپ کریں"
+      },
+      
+      "tutor": {
+        "title": "ٹیوٹر سائن اپ",
+        "experience": "تجربہ (مثال: 5 سال)",
+        "uploadCV": "اپنا سی وی اپ لوڈ کریں",
+        "changeCV": "سی وی تبدیل کریں (.doc, .docx, .pdf)",
+        "invalidFileType": "غلط فائل کی قسم۔ براہ کرم .pdf, .doc, یا .docx اپ لوڈ کریں۔",
+        "fileTooLarge": "فائل بہت بڑی ہے۔ زیادہ سے زیادہ سائز 5MB ہے۔",
+        "fillAllFields": "براہ کرم تمام فیلڈز بھریں اور اپنا سی وی اپ لوڈ کریں۔",
+        "success": "ٹیوٹر کے طور پر کامیابی سے سائن اپ ہو گیا!",
+        "remove": "ہٹائیں"
+      }
+    },
+    
+    "roles": {
+      "student": "طالب علم",
+      "admin": "ایڈمن",
+      "tutor": "ٹیوٹر"
+    }
+  },
+  "profile": {
+    "title": "پروفائل",
+    "default": {
+      "name": "جان ڈو",
+      "email": "john@example.com",
+      "phone": "+1234567890",
+      "enrollmentDate": "2023-01-15",
+      "bio": "اپنے بارے میں بتائیں..."
+    },
+    "roles": {
+      "student": "طالب علم"
+    },
+    "labels": {
+      "name": "نام",
+      "email": "ای میل",
+      "phone": "فون",
+      "role": "کردار",
+      "enrollmentDate": "تاریخ اندراج",
+      "bio": "سوانح"
+    },
+    "buttons": {
+      "edit": "پروفائل میں ترمیم کریں",
+      "save": "تبدیلیاں محفوظ کریں",
+      "cancel": "منسوخ کریں",
+      "changePic": "پروفائل تصویر تبدیل کریں"
+    },
+    "messages": {
+      "picUpdated": "پروفائل تصویر کامیابی سے اپ ڈیٹ ہو گئی!",
+      "saveSuccess": "پروفائل کامیابی سے اپ ڈیٹ ہو گیا!",
+      "changesCancelled": "تبدیلیاں منسوخ کر دی گئیں"
+    },
+    "alt": {
+      "profilePic": "پروفائل تصویر"
+    }
+  },
+  "submitAssignment": {
+    "title": "اسائنمنٹ جمع کروائیں",
+    "fileInputLabel": "اپ لوڈ کرنے کے لیے کلک کریں یا فائل کو کھینچ کر چھوڑیں",
+    "fileInputAriaLabel": "اسائنمنٹ فائل منتخب کریں",
+    "submitButton": "اسائنمنٹ جمع کروائیں",
+    "uploading": "اپ لوڈ ہو رہا ہے...",
+    "uploadProgress": "اپ لوڈ کی پیشرفت: {progress}%",
+    "fileSelected": "فائل منتخب کی گئی: {fileName}",
+    "submissionSuccess": "اسائنمنٹ کامیابی سے جمع کر دی گئی: {fileName}",
+    "errors": {
+      "fileTooLarge": "فائل کا سائز 10MB کی حد سے زیادہ ہے",
+      "noFileSelected": "براہ کرم ایک فائل منتخب کریں",
+      "submissionFailed": "جمع کرانے میں ناکامی، براہ کرم دوبارہ کوشش کریں"
+    }
+  },
+  "assignments": {
+    "title": "میری اسائنمنٹس",
+    "columns": {
+      "title": "عنوان",
+      "status": "حالت",
+      "dueDate": "آخری تاریخ",
+      "actions": "اعمال"
+    },
+    "status": {
+      "submitted": "جمع کرایا گیا",
+      "pending": "زیر التواء",
+      "late": "تاخیر سے"
+    },
+    "aiResearch": "AI تحقیقی مقالہ",
+    "databaseSchema": "ڈیٹا بیس اسکیمہ ڈیزائن",
+    "reactComponent": "React کمپوننٹ لائبریری",
+    "download": "ڈاؤن لوڈ",
+    "delete": "حذف کریں",
+    "downloading": "{filename} ڈاؤن لوڈ ہو رہا ہے...",
+    "downloadSuccess": "{filename} کامیابی سے ڈاؤن لوڈ ہو گیا!",
+    "deleteSuccess": "اسائنمنٹ کامیابی سے حذف ہو گئی",
+    "emptyState": "کوئی اسائنمنٹ نہیں ملی"
+  },
+  "assignments": {
+    "title": "میرے اسائنمنٹس",
+    "columns": {
+      "title": "عنوان",
+      "status": "حالت",
+      "dueDate": "آخری تاریخ",
+      "actions": "اعمال"
+    },
+    "status": {
+      "submitted": "جمع کرایا گیا",
+      "pending": "زیر التواء",
+      "late": "تاخیر سے"
+    },
+    "assignmentTitles": {
+      "aiResearch": "AI تحقیقی مقالہ",
+      "databaseSchema": "ڈیٹا بیس اسکیمہ ڈیزائن",
+      "reactComponent": "React کمپوننٹ لائبریری"
+    },
+    "actions": {
+      "download": "ڈاؤن لوڈ",
+      "delete": "حذف کریں"
+    },
+    "messages": {
+      "downloading": "{filename} ڈاؤن لوڈ ہو رہا ہے...",
+      "downloadSuccess": "{filename} کامیابی سے ڈاؤن لوڈ ہو گیا!",
+      "deleteSuccess": "اسائنمنٹ کامیابی سے حذف ہو گئی",
+      "emptyState": "کوئی اسائنمنٹ نہیں ملی"
+    }
+  },
+  "submitAssignment": {
+    "title": "اسائنمنٹ جمع کروائیں",
+    "fileInputLabel": "اپ لوڈ کرنے کے لیے کلک کریں یا فائل کو کھینچ کر چھوڑیں",
+    "fileInputAriaLabel": "اسائنمنٹ فائل منتخب کریں",
+    "submitButton": "اسائنمنٹ جمع کروائیں",
+    "uploading": "اپ لوڈ ہو رہا ہے...",
+    "uploadProgress": "اپ لوڈ کی پیشرفت: {progress}%",
+    "fileSelected": "فائل منتخب کی گئی: {fileName}",
+    "submissionSuccess": "اسائنمنٹ کامیابی سے جمع کر دی گئی: {fileName}",
+    "errors": {
+      "fileTooLarge": "فائل کا سائز 10MB کی حد سے زیادہ ہے",
+      "noFileSelected": "براہ کرم ایک فائل منتخب کریں",
+      "submissionFailed": "جمع کرانے میں ناکامی، براہ کرم دوبارہ کوشش کریں"
+    }
+  }
 }

@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router"; // Corrected import
+import { useNavigate, Link } from "react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface LoginProps {
   onLogin: (role: "student" | "admin" | "tutor") => void;
 }
 
 function Login({ onLogin }: LoginProps) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,14 +40,11 @@ function Login({ onLogin }: LoginProps) {
     localStorage.setItem("userRole", role);
 
     onLogin(role);
-    navigate(`/dashboard/${role}`);
+    navigate(`/dashboard/student`);
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/Icons/9161244.png')" }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/Icons/9161244.png')" }}>
       <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/40 to-white/30 z-0" />
 
       <motion.div
@@ -55,22 +54,18 @@ function Login({ onLogin }: LoginProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="hidden md:flex flex-1 justify-center items-center">
-          <img
-            src="/Icons/illustrations.jpg"
-            alt="Login Illustration"
-            className="object-contain max-w-xs w-full h-auto"
-          />
+          <img src="/Icons/illustrations.jpg" alt="Login Illustration" className="object-contain max-w-xs w-full h-auto" />
         </div>
 
         <div className="flex-1 w-full">
-          <h2 className="text-3xl font-medium text-gray-700">Let's</h2>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Start Learning</h1>
-          <p className="text-gray-600 mb-6 text-sm">Please login or sign up to continue</p>
+          <h2 className="text-3xl font-medium text-gray-700">{t("auth.login.title")}</h2>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("auth.login.subtitle")}</h1>
+          <p className="text-gray-600 mb-6 text-sm">{t("auth.login.description")}</p>
 
           <form className="space-y-4" onSubmit={handleLogin}>
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder={t("auth.login.yourEmail")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required={role !== "admin"}
@@ -80,7 +75,7 @@ function Login({ onLogin }: LoginProps) {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                placeholder="Your Password"
+                placeholder={t("auth.login.yourPassword")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required={role !== "admin"}
@@ -103,7 +98,7 @@ function Login({ onLogin }: LoginProps) {
                 onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label htmlFor="rememberMe" className="text-sm text-gray-700">
-                Remember Me
+                {t("auth.login.rememberMe")}
               </label>
             </div>
 
@@ -117,7 +112,7 @@ function Login({ onLogin }: LoginProps) {
                   onChange={() => setRole("student")}
                   className="mr-2"
                 />
-                Student
+                {t("auth.roles.student")}
               </label>
               <label className="inline-flex items-center">
                 <input
@@ -128,7 +123,7 @@ function Login({ onLogin }: LoginProps) {
                   onChange={() => setRole("admin")}
                   className="mr-2"
                 />
-                Admin
+                {t("auth.roles.admin")}
               </label>
               <label className="inline-flex items-center">
                 <input
@@ -139,7 +134,7 @@ function Login({ onLogin }: LoginProps) {
                   onChange={() => setRole("tutor")}
                   className="mr-2"
                 />
-                Tutor
+                {t("auth.roles.tutor")}
               </label>
             </div>
 
@@ -149,7 +144,7 @@ function Login({ onLogin }: LoginProps) {
               type="submit"
               className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md transition duration-300"
             >
-              Login
+              {t("auth.login.loginButton")}
             </button>
 
             <button
@@ -157,29 +152,21 @@ function Login({ onLogin }: LoginProps) {
               className="w-full flex items-center justify-center border py-2 rounded-md hover:bg-gray-50 transition duration-300"
             >
               <img src="/Icons/google.png" alt="Google" className="w-5 h-5 mr-2" />
-              Google
+              {t("auth.login.googleLogin")}
             </button>
           </form>
 
           <p className="text-sm text-center mt-4 text-gray-500 flex justify-center gap-4">
             <span>
-              Don't have an account?
-              <Link
-                to="/signin"
-                className="text-orange-500 ml-1 hover:underline"
-                onClick={() => console.log("Navigating to /signin")}
-              >
-                Sign Up
+              {t("auth.login.noAccount")}
+              <Link to="/signin" className="text-orange-500 ml-1 hover:underline">
+                {t("auth.login.signUp")}
               </Link>
             </span>
             <span>|</span>
             <span>
-              <Link
-                to="/forgot-password"
-                className="text-orange-500 hover:underline"
-                onClick={() => console.log("Navigating to /forgot-password")}
-              >
-                Forgot Password?
+              <Link to="/forgot-password" className="text-orange-500 hover:underline">
+                {t("auth.login.forgotPassword")}
               </Link>
             </span>
           </p>

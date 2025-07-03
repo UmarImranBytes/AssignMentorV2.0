@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router"; // fixed import
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next"; // ✅ i18n hook
 
 const RequestPasswordReset: React.FC = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setMessage("Reset password link sent to your email.");
+    setMessage(t("resetSent"));
     setError(null);
   };
 
@@ -32,7 +34,7 @@ const RequestPasswordReset: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Forgot Your Password?
+          {t("forgotPassword")}
         </motion.h2>
 
         {message && (
@@ -57,7 +59,7 @@ const RequestPasswordReset: React.FC = () => {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="email" className="block mb-1 font-medium text-gray-700">
-              Email Address
+              {t("emailAddress")}
             </label>
             <input
               type="email"
@@ -75,7 +77,7 @@ const RequestPasswordReset: React.FC = () => {
             whileTap={{ scale: 0.98 }}
             className="w-full bg-orange-600 text-white py-2 rounded-lg font-semibold transition-all duration-300 hover:bg-orange-700"
           >
-            Send Reset Link
+            {t("sendLink")}
           </motion.button>
         </form>
 
@@ -86,9 +88,9 @@ const RequestPasswordReset: React.FC = () => {
           transition={{ delay: 0.3 }}
         >
           <p className="text-sm text-gray-600">
-            Remembered your password?{" "}
+            {t("remembered")}{" "}
             <Link to="/" className="text-orange-600 font-semibold hover:underline">
-              Go back to Login
+              {t("backToLogin")}
             </Link>
           </p>
         </motion.div>

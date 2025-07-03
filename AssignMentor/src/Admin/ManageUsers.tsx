@@ -1,6 +1,7 @@
 import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 interface User {
   id: string;
@@ -10,16 +11,17 @@ interface User {
   role: "student" | "tutor" | "admin";
 }
 
-const dummyUsers: User[] = [
-  { id: "1", firstName: "Ali", lastName: "Khan", email: "ali@example.com", role: "student" },
-  { id: "2", firstName: "Sara", lastName: "Malik", email: "sara@example.com", role: "tutor" },
-  { id: "3", firstName: "Ahmed", lastName: "Butt", email: "ahmed@example.com", role: "admin" },
-  { id: "4", firstName: "Noor", lastName: "Zahid", email: "noor@example.com", role: "student" },
-  { id: "5", firstName: "Zara", lastName: "Iqbal", email: "zara@example.com", role: "student" },
-  { id: "6", firstName: "Bilal", lastName: "Raza", email: "bilal@example.com", role: "tutor" },
-];
+const ManageUsers = () => {
+  const { t } = useTranslation();
+  const dummyUsers: User[] = [
+    { id: "1", firstName: "Ali", lastName: "Khan", email: "ali@example.com", role: "student" },
+    { id: "2", firstName: "Sara", lastName: "Malik", email: "sara@example.com", role: "tutor" },
+    { id: "3", firstName: "Ahmed", lastName: "Butt", email: "ahmed@example.com", role: "admin" },
+    { id: "4", firstName: "Noor", lastName: "Zahid", email: "noor@example.com", role: "student" },
+    { id: "5", firstName: "Zara", lastName: "Iqbal", email: "zara@example.com", role: "student" },
+    { id: "6", firstName: "Bilal", lastName: "Raza", email: "bilal@example.com", role: "tutor" },
+  ];
 
-export default function ManageUsers() {
   const [users, setUsers] = useState<User[]>(dummyUsers);
   const [editUser, setEditUser] = useState<User | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -68,13 +70,13 @@ export default function ManageUsers() {
     setUsers((prev) =>
       prev.map((u) => (u.id === editUser.id ? editUser : u))
     );
-    toast.success("User updated!");
+    toast.success(t('users.updateSuccess'));
     closeDrawer();
   };
 
   const handleDelete = (id: string) => {
     setUsers((prev) => prev.filter((u) => u.id !== id));
-    toast.success("User deleted!");
+    toast.success(t('users.deleteSuccess'));
   };
 
   const toggleAdmin = (id: string) => {
@@ -85,12 +87,14 @@ export default function ManageUsers() {
           : u
       )
     );
-    toast.info("Role toggled!");
+    toast.info(t('users.roleToggle'));
   };
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4 text-orange-500">Manage Users</h1>
+      <h1 className="text-2xl font-bold mb-4 text-orange-500">
+        {t('users.manageUsers')}
+      </h1>
 
       {/* Filters */}
       <div className="flex items-center gap-4 mb-4">
@@ -101,15 +105,15 @@ export default function ManageUsers() {
           }
           className="border px-3 py-2 rounded"
         >
-          <option value="all">All Roles</option>
-          <option value="student">Students</option>
-          <option value="tutor">Tutors</option>
-          <option value="admin">Admins</option>
+          <option value="all">{t('users.filter.allRoles')}</option>
+          <option value="student">{t('users.filter.students')}</option>
+          <option value="tutor">{t('users.filter.tutors')}</option>
+          <option value="admin">{t('users.filter.admins')}</option>
         </select>
 
         <input
           type="text"
-          placeholder="Search by name or email"
+          placeholder={t('users.searchPlaceholder')}
           className="border px-3 py-2 rounded w-64"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -120,11 +124,17 @@ export default function ManageUsers() {
       <table className="w-full border shadow-sm rounded-md overflow-hidden">
         <thead className="bg-gray-100 text-left">
           <tr>
-            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("firstName")}>First Name</th>
-            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("lastName")}>Last Name</th>
-            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("email")}>Email</th>
-            <th className="px-4 py-2">Role</th>
-            <th className="px-4 py-2">Actions</th>
+            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("firstName")}>
+              {t('users.table.firstName')}
+            </th>
+            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("lastName")}>
+              {t('users.table.lastName')}
+            </th>
+            <th className="px-4 py-2 cursor-pointer" onClick={() => handleSort("email")}>
+              {t('users.table.email')}
+            </th>
+            <th className="px-4 py-2">{t('users.table.role')}</th>
+            <th className="px-4 py-2">{t('users.table.actions')}</th>
           </tr>
         </thead>
         <tbody>
@@ -133,26 +143,28 @@ export default function ManageUsers() {
               <td className="px-4 py-2">{user.firstName}</td>
               <td className="px-4 py-2">{user.lastName}</td>
               <td className="px-4 py-2">{user.email}</td>
-              <td className="px-4 py-2 capitalize">{user.role}</td>
+              <td className="px-4 py-2 capitalize">{t(`users.roles.${user.role}`)}</td>
               <td className="px-4 py-2 space-x-2">
                 <button
                   className="bg-orange-500 text-white px-3 py-1 rounded"
                   onClick={() => openDrawer(user)}
                 >
-                  Edit
+                  {t('users.actions.edit')}
                 </button>
                 <button
                   className="bg-red-500 text-white px-3 py-1 rounded"
                   onClick={() => handleDelete(user.id)}
                 >
-                  Delete
+                  {t('users.actions.delete')}
                 </button>
                 {user.role !== "student" && (
                   <button
                     className="bg-blue-500 text-white px-3 py-1 rounded"
                     onClick={() => toggleAdmin(user.id)}
                   >
-                    {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
+                    {user.role === "admin" 
+                      ? t('users.actions.revokeAdmin') 
+                      : t('users.actions.makeAdmin')}
                   </button>
                 )}
               </td>
@@ -168,17 +180,17 @@ export default function ManageUsers() {
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
-          Prev
+          {t('pagination.prev')}
         </button>
         <span className="text-sm text-gray-600">
-          Page {currentPage} of {totalPages}
+          {t('pagination.pageInfo', { current: currentPage, total: totalPages })}
         </span>
         <button
           className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
-          Next
+          {t('pagination.next')}
         </button>
       </div>
 
@@ -199,12 +211,14 @@ export default function ManageUsers() {
 
           <div className="fixed inset-y-0 right-0 max-w-sm w-full bg-white shadow-lg overflow-auto">
             <div className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Edit User</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                {t('users.editUser')}
+              </h2>
               <div className="space-y-3">
                 <input
                   className="w-full border px-3 py-2 rounded"
                   value={editUser?.firstName || ""}
-                  placeholder="First Name"
+                  placeholder={t('users.form.firstName')}
                   onChange={(e) =>
                     setEditUser((prev) =>
                       prev ? { ...prev, firstName: e.target.value } : null
@@ -214,7 +228,7 @@ export default function ManageUsers() {
                 <input
                   className="w-full border px-3 py-2 rounded"
                   value={editUser?.lastName || ""}
-                  placeholder="Last Name"
+                  placeholder={t('users.form.lastName')}
                   onChange={(e) =>
                     setEditUser((prev) =>
                       prev ? { ...prev, lastName: e.target.value } : null
@@ -224,7 +238,7 @@ export default function ManageUsers() {
                 <input
                   className="w-full border px-3 py-2 rounded"
                   value={editUser?.email || ""}
-                  placeholder="Email"
+                  placeholder={t('users.form.email')}
                   onChange={(e) =>
                     setEditUser((prev) =>
                       prev ? { ...prev, email: e.target.value } : null
@@ -238,13 +252,13 @@ export default function ManageUsers() {
                   onClick={closeDrawer}
                   className="px-4 py-2 bg-gray-300 rounded"
                 >
-                  Cancel
+                  {t('common.cancel')}
                 </button>
                 <button
                   onClick={handleSave}
                   className="px-4 py-2 bg-orange-500 text-white rounded"
                 >
-                  Save
+                  {t('common.save')}
                 </button>
               </div>
             </div>
@@ -253,4 +267,6 @@ export default function ManageUsers() {
       </Transition>
     </div>
   );
-}
+};
+
+export default ManageUsers;

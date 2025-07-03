@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import "react-toastify/dist/ReactToastify.css";
 
 interface Complaint {
@@ -11,6 +12,7 @@ interface Complaint {
 }
 
 const AdminComplaints = () => {
+  const { t } = useTranslation();
   const [complaints, setComplaints] = useState<Complaint[]>([]);
 
   useEffect(() => {
@@ -20,39 +22,41 @@ const AdminComplaints = () => {
         _id: "1",
         userName: "Ali Raza",
         userEmail: "ali@example.com",
-        message: "Issue with assignment submission portal.",
+        message: t('complaints.dummyMessage1'),
         status: "pending",
       },
       {
         _id: "2",
         userName: "Fatima Khan",
         userEmail: "fatima@example.com",
-        message: "Cannot access the recent assignments tab.",
+        message: t('complaints.dummyMessage2'),
         status: "resolved",
       },
     ];
 
     setComplaints(dummyComplaints);
-  }, []);
+  }, [t]);
 
   const resolveComplaint = (id: string) => {
     try {
-      toast.success("Complaint resolved!");
+      toast.success(t('complaints.resolveSuccess'));
       setComplaints((prev) =>
         prev.map((comp) =>
           comp._id === id ? { ...comp, status: "resolved" } : comp
         )
       );
     } catch {
-      toast.error("Failed to resolve complaint");
+      toast.error(t('complaints.resolveError'));
     }
   };
 
   return (
     <div className="p-10">
-      <h1 className="text-2xl font-bold mb-4 text-orange-500">Admin Complaints Panel</h1>
+      <h1 className="text-2xl font-bold mb-4 text-orange-500">
+        {t('complaints.adminPanel')}
+      </h1>
       {complaints.length === 0 ? (
-        <p>No complaints found.</p>
+        <p>{t('complaints.noComplaints')}</p>
       ) : (
         <div className="space-y-4">
           {complaints.map((complaint) => (
@@ -71,14 +75,14 @@ const AdminComplaints = () => {
                       : "bg-yellow-100 text-yellow-600"
                   }`}
                 >
-                  {complaint.status}
+                  {t(`complaints.status.${complaint.status}`)}
                 </span>
                 {complaint.status === "pending" && (
                   <button
                     className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded"
                     onClick={() => resolveComplaint(complaint._id)}
                   >
-                    Mark Resolved
+                    {t('complaints.markResolved')}
                   </button>
                 )}
               </div>

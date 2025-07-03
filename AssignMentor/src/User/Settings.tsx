@@ -10,10 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LANGUAGES = [
   { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "ur", label: "اردو", flag: "🇵🇰", rtl: true },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "ar", label: "العربية", flag: "🇸🇦", rtl: true },
-  { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "ur", label: "اردو", flag: "🇵🇰", rtl: true }
 ];
 
 export default function Settings() {
@@ -65,8 +62,7 @@ export default function Settings() {
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-orange-600 mb-6">{t("settings")}</h1>
-
+      <h1 className="text-3xl font-bold text-orange-600 mb-6 text-center">{t("settings.title")}</h1>
       <div className="space-y-4">
         {/* Dark Mode */}
         <div className="flex items-center justify-between">

@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+html {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}

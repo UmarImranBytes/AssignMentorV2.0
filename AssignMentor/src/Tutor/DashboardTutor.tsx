@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   PieChart,
   Pie,
@@ -9,42 +10,46 @@ import {
 } from "recharts";
 
 const DashboardTutor: React.FC = () => {
+  const { t } = useTranslation();
+
   // Statistics Data
   const stats = [
-    { label: "Total Assignments", value: 24, color: "#fb923c" },
-    { label: "Pending Reviews", value: 6, color: "#facc15" },
-    { label: "Reviewed", value: 18, color: "#22c55e" },
+    { label: t("dashboard.stats.totalAssignments"), value: 24, color: "#fb923c" },
+    { label: t("dashboard.stats.pendingReviews"), value: 6, color: "#facc15" },
+    { label: t("dashboard.stats.reviewed"), value: 18, color: "#22c55e" },
   ];
 
   // Pie Chart Data
   const pieData = [
-    { name: "Reviewed", value: 18 },
-    { name: "Pending", value: 6 },
+    { name: t("dashboard.statusValues.reviewed"), value: 18 },
+    { name: t("dashboard.statusValues.pending"), value: 6 },
   ];
 
   const COLORS = ["#22c55e", "#facc15"];
 
   // Upcoming Deadlines
   const upcoming = [
-    { subject: "Database Systems", dueDate: "2025-07-02" },
-    { subject: "Operating Systems", dueDate: "2025-07-04" },
+    { subject: t("dashboard.subjects.database"), dueDate: "2025-07-02" },
+    { subject: t("dashboard.subjects.os"), dueDate: "2025-07-04" },
   ];
 
   // Recent Submissions
   const recentSubmissions = [
-    { student: "Ali Raza", subject: "Web Development", submittedOn: "2025-06-29" },
-    { student: "Fatima Khan", subject: "AI & ML", submittedOn: "2025-06-28" },
+    { student: t("dashboard.students.ali"), subject: t("dashboard.subjects.webDev"), submittedOn: "2025-06-29" },
+    { student: t("dashboard.students.fatima"), subject: t("dashboard.subjects.ai"), submittedOn: "2025-06-28" },
   ];
 
   // Admin Messages
   const adminMessages = [
-    { date: "2025-06-30", message: "Reminder: Final review of OS assignments due by Friday." },
-    { date: "2025-06-28", message: "New grading rubric uploaded in the Resources section." },
+    { date: "2025-06-30", message: t("dashboard.messages.reminder") },
+    { date: "2025-06-28", message: t("dashboard.messages.rubric") },
   ];
 
   return (
     <div className="p-14 space-y-7">
-      <h1 className="text-2xl font-semibold">Welcome, Tutor 👋</h1>
+      <h1 className="text-2xl font-semibold">
+        {t("dashboard.welcome")}, {t("dashboard.roles.tutor")} 👋
+      </h1>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -64,7 +69,9 @@ const DashboardTutor: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Pie Chart */}
         <div className="bg-white p-4 rounded-xl shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Assignment Review Status</h2>
+          <h2 className="text-lg font-semibold mb-2">
+            {t("dashboard.chartTitle")}
+          </h2>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -88,7 +95,9 @@ const DashboardTutor: React.FC = () => {
 
         {/* Upcoming Deadlines */}
         <div className="bg-white p-4 rounded-xl shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Upcoming Deadlines</h2>
+          <h2 className="text-lg font-semibold mb-2">
+            {t("dashboard.upcomingTitle")}
+          </h2>
           <ul>
             {upcoming.map((item, index) => (
               <li
@@ -107,7 +116,9 @@ const DashboardTutor: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Submissions */}
         <div className="bg-white p-4 rounded-xl shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Recent Submissions</h2>
+          <h2 className="text-lg font-semibold mb-2">
+            {t("dashboard.submissionsTitle")}
+          </h2>
           <ul>
             {recentSubmissions.map((item, index) => (
               <li
@@ -126,7 +137,9 @@ const DashboardTutor: React.FC = () => {
 
         {/* Admin Messages */}
         <div className="bg-white p-4 rounded-xl shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Messages from Admin</h2>
+          <h2 className="text-lg font-semibold mb-2">
+            {t("dashboard.messagesTitle")}
+          </h2>
           <ul>
             {adminMessages.map((msg, index) => (
               <li
